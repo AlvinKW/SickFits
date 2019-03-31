@@ -5,4 +5,4 @@ node_modules/
 .next/
 .build/
 .vscode/
-generated/prisma.graphql
+generated/
