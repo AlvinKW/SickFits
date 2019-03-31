@@ -47,28 +47,33 @@ PRISMA_SECRET=xxx
 STRIPE_SECRET=xxx
 ```
 
-5. Run the npm script: npm start
+5. Run the npm script: npm run deploy
+```
+npm run deploy
+```
+
+6. Run the npm script: npm start
 ```
 npm start
 ```
 
-6. The server will start on this domain
+7. The server will start on this domain
 ```
 https://localhost:5000
 ```
 
-7. On a new terminal, enter the frontend directory and install the necessary packages
+8. On a new terminal, enter the frontend directory and install the necessary packages
 ```
 cd SickFits/frontend
 npm install
 ```
 
-8. Run the npm script: npm start
+9. Run the npm script: npm start
 ```
 npm start
 ```
 
-9. The server will start on this domain
+10. The server will start on this domain
 ```
 https://localhost:3000
 ```
