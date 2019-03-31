@@ -1,6 +1,7 @@
 {
 	"name": "sick-fits-frontend",
 	"version": "1.0.0",
+	"author": "Kazi Jawad",
 	"description": "Sick Fits! An example React, GraphQL, Next and Apollo",
 	"main": "index.js",
 	"scripts": {
@@ -12,7 +13,6 @@
 		"test-win": "SET NODE_ENV=test&& jest --watch",
 		"heroku-postbuild": "next build"
 	},
-	"author": "Kazi Jawad",
 	"dependencies": {
 		"apollo-boost": "^0.1.16",
 		"apollo-client": "^2.4.2",
@@ -62,7 +62,6 @@
 		"^.+\\.js?$": "babel-jest"
 		}
 	},
-	"//": "This is our babel config, I prefer this over a .babelrc file",
 	"babel": {
 		"env": {
 			"development": {
