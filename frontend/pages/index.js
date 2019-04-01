@@ -1,7 +1,9 @@
+import Items from '../components/Items';
+
 function Home() {
 	return (
 		<div>
-			<p>Hey!</p>
+			<Items />
 		</div>
 	);
 }
