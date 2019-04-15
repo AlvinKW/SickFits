@@ -1,11 +1,9 @@
 import Items from '../components/Items';
 
-function Home() {
+function Index() {
 	return (
-		<div>
-			<Items />
-		</div>
+		<Items />
 	);
 }
 
-export default Home;
+export default Index;
