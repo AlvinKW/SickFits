@@ -1,8 +1,8 @@
 import Items from '../components/Items';
 
-function Index() {
+function Index(props) {
 	return (
-		<Items />
+		<Items page={parseFloat(props.query.page) || 1} />
 	);
 }
 
