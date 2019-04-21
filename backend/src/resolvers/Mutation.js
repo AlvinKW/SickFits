@@ -61,6 +61,10 @@ const Mutation = {
 
 		return user;
 	},
+	signOut(parent, args, ctx) {
+		ctx.response.clearCookie('token');
+		return { message: 'Goodbye!' };
+	},
 };
 
 module.exports = Mutation;

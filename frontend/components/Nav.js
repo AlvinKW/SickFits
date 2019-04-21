@@ -1,6 +1,7 @@
 import Link from 'next/link';
 
 import User from './User';
+import SignOut from './SignOut';
 
 import NavStyles from './styles/NavStyles';
 
@@ -23,6 +24,7 @@ function Nav() {
 							<Link href="/account">
 								<a>Account</a>
 							</Link>
+							<SignOut />
 						</>
 					)}
 					{!me && (
