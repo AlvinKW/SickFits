@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import SignUp from '../components/SignUp';
+import SignUpForm from '../components/SignUp';
 
 const Columns = styled.div`
 	display: grid;
@@ -8,14 +8,14 @@ const Columns = styled.div`
 	grid-gap: 20px;
 `;
 
-function SignUpPage() {
+function SignUp() {
 	return (
 		<Columns>
-			<SignUp />
-			<SignUp />
-			<SignUp />
+			<SignUpForm />
+			<SignUpForm />
+			<SignUpForm />
 		</Columns>
 	);
 }
 
-export default SignUpPage;
+export default SignUp;
