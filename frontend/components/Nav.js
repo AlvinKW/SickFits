@@ -20,14 +20,14 @@ function Nav() {
 							<Link href="/orders">
 								<a>Orders</a>
 							</Link>
-							<Link href="/me">
+							<Link href="/account">
 								<a>Account</a>
 							</Link>
 						</>
 					)}
 					{!me && (
-						<Link href="/signup">
-							<a>Sign Up</a>
+						<Link href="/auth">
+							<a>Sign In</a>
 						</Link>
 					)}
 				</NavStyles>

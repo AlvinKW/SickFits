@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import SignUpForm from '../components/SignUp';
-import SignInForm from '../components/SignIn';
+import SignUp from '../components/SignUp';
+import SignIn from '../components/SignIn';
 
 const Columns = styled.div`
 	display: grid;
@@ -9,13 +9,13 @@ const Columns = styled.div`
 	grid-gap: 20px;
 `;
 
-function SignUp() {
+function Auth() {
 	return (
 		<Columns>
-			<SignUpForm />
-			<SignInForm />
+			<SignUp />
+			<SignIn />
 		</Columns>
 	);
 }
 
-export default SignUp;
+export default Auth;
