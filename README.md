@@ -15,6 +15,7 @@ node 10.x.x
 npm 6.x.x
 prisma
 stripe
+mailtrap
 ```
 
 ### Installing
@@ -41,6 +42,9 @@ touch .env
 ```
 APP_SECRET=xxx
 FRONTEND_URL=xxx
+MAIL_PORT=xxx
+MAIL_USER=xxx
+MAIL_PASS=xxx
 PORT=5000
 PRISMA_ENDPOINT=xxx
 PRISMA_SECRET=xxx
@@ -93,6 +97,7 @@ https://localhost:3000
 * [GraphQL-Yoga](https://github.com/prisma/graphql-yoga) - GraphQL Server
 * [Prisma](http://prisma.io) - GraphQL Database Interface
 * [Stripe](https://stripe.com/us) - Online Payment Platform
+* [Mailtrap](https://mailtrap.io/) - E-Mail Testing Platform
 * [Nodemailer](https://nodemailer.com/about/) - Node.js E-Mail Platform
 
 ## Author
