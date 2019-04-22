@@ -76,12 +76,12 @@ const Mutation = {
 		const randomBytesPromise = promisify(randomBytes);
 		const resetToken = (await randomBytesPromise(20)).toString('hex');
 		const resetTokenExpiry = Date.now() + 3600000; // 1 Hour
-		const response = await ctx.db.mutation.updateUser({
+		await ctx.db.mutation.updateUser({
 			where: { email: args.email },
 			data: { resetToken, resetTokenExpiry },
 		});
 
-		return { message: 'Password Reset Email Sent!' };
+		return { message: 'Check your email for a reset link!' };
 	},
 	async resetPassword(parent, args, ctx) {
 		if (args.password !== args.confirmPassword) {
