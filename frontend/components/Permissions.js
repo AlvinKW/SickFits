@@ -1,6 +1,7 @@
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import Error from './ErrorMessage';
 import Table from './styles/Table';
@@ -46,7 +47,7 @@ function Permissions() {
 								</tr>
 							</thead>
 							<tbody>
-								{data.users.map(user => <User key={user.id} user={user} />)}
+								{data.users.map(user => <UserPermissions key={user.id} user={user} />)}
 							</tbody>
 						</Table>
 					</div>
@@ -56,7 +57,26 @@ function Permissions() {
 	);
 }
 
-class User extends Component {
+class UserPermissions extends Component {
+	state = {
+		permissions: this.props.user.permissions,
+	};
+
+	permissionChangeHandler = event => {
+		const checkbox = event.target;
+		let updatedPermissions = [...this.state.permissions];
+
+		if (checkbox.checked) {
+			updatedPermissions.push(checkbox.value);
+		} else {
+			updatedPermissions = updatedPermissions.filter(permission => {
+				return permission !== checkbox.value;
+			});
+		}
+
+		this.setState({ permissions: updatedPermissions });
+	};
+
 	render() {
 		const user = this.props.user;
 		return (
@@ -66,7 +86,12 @@ class User extends Component {
 				{possiblePermissions.map(permission => (
 					<td key={permission}>
 						<label htmlFor={`${user.id}-permission-${permission}`}>
-							<input type="checkbox" />
+							<input
+								type="checkbox"
+								value={permission}
+								checked={this.state.permissions.includes(permission)}
+								onChange={this.permissionChangeHandler}
+							/>
 						</label>
 					</td>
 				))}
@@ -77,5 +102,14 @@ class User extends Component {
 		);
 	}
 }
+
+UserPermissions.propTypes = {
+	user: PropTypes.shape({
+		id: PropTypes.string,
+		name: PropTypes.string,
+		email: PropTypes.string,
+		permissions: PropTypes.array,
+	}).isRequired,
+};
 
 export default Permissions;
