@@ -42,15 +42,19 @@ class Items extends Component {
 					skip: this.props.page * perPage - perPage,
 				}}>
 					{({ data, loading, error }) => {
-						if (loading) { return <p>Loading...</p>; }
-						if (error) { return <p>Error: {error.message}</p>; }
-						return (
-							<ItemsList>
-								{data.items.map(item => {
-									return <Item key={item.id} item={item} />;
-								})}
-							</ItemsList>
-						);
+						if (loading) {
+							return <p>Loading...</p>;
+						} else if (error) {
+							return <p>Error: {error.message}</p>;
+						} else {
+							return (
+								<ItemsList>
+									{data.items.map(item => {
+										return <Item key={item.id} item={item} />;
+									})}
+								</ItemsList>
+							);
+						}
 					}}
 				</Query>
 				<Pagination page={this.props.page} />
