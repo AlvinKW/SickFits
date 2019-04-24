@@ -4,6 +4,7 @@ const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
 
 const createServer = require('./createServer');
+const db = require('./db');
 
 const server = createServer();
 
@@ -16,6 +17,17 @@ server.express.use((req, res, next) => {
 		req.userID = userID;
 	}
 
+	next();
+});
+
+server.express.use(async(req, res, next) => {
+	if (!req.userID) { return next(); }
+
+	const user = await db.query.user({
+		where: { id: req.userID },
+	}, '{ id, name, email, permissions }');
+
+	req.user = user;
 	next();
 });
 
