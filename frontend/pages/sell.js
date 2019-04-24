@@ -1,9 +1,12 @@
+import PleaseSignIn from '../components/PleaseSignIn';
 import CreateItem from '../components/CreateItem';
 
 function Sell() {
 	return (
 		<div>
-			<CreateItem />
+			<PleaseSignIn>
+				<CreateItem />
+			</PleaseSignIn>
 		</div>
 	);
 }
