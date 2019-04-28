@@ -31,10 +31,10 @@ const Logo = styled.h1`
 
 	a {
 		padding: 0.5rem 1rem;
-		background: ${props => props.theme.red};
-		color: white;
 		text-transform: uppercase;
 		text-decoration: none;
+		background: ${props => props.theme.red};
+		color: white;
 	}
 `;
 

@@ -3,18 +3,18 @@ import styled, { keyframes } from 'styled-components';
 const DropDown = styled.div`
 	position: absolute;
 	width: 100%;
-	z-index: 2;
 	border: 1px solid ${props => props.theme.lightGrey};
+	z-index: 2;
 `;
 
 const DropDownItem = styled.div`
-	border-bottom: 1px solid ${props => props.theme.lightGrey};
-	background: ${props => (props.highlighted ? '#f7f7f7' : 'white')};
-	padding: 1rem;
-	transition: all 0.2s;
 	display: flex;
 	align-items: center;
+	padding: 1rem;
+	border-bottom: 1px solid ${props => props.theme.lightGrey};
 	border-left: 10px solid ${props => (props.highlighted ? props.theme.lightGrey : 'white')};
+	background: ${props => (props.highlighted ? '#f7f7f7' : 'white')};
+	transition: all 0.2s;
 	${props => (props.highlighted ? 'padding-left: 2rem;' : null)};
 
 	img {

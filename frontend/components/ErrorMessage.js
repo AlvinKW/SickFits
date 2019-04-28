@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 const ErrorStyles = styled.div`
-	padding: 2rem;
-	background: white;
 	margin: 2rem 0;
+	padding: 2rem;
 	border: 1px solid rgba(0, 0, 0, 0.05);
 	border-left: 5px solid red;
+	background: white;
 
 	p {
 		margin: 0;

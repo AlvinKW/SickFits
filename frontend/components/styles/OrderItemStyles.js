@@ -1,16 +1,16 @@
 import styled from 'styled-components';
 
 const OrderItemStyles = styled.li`
-	box-shadow: ${props => props.theme.bs};
-	list-style: none;
 	padding: 2rem;
 	border: 1px solid ${props => props.theme.offWhite};
+	box-shadow: ${props => props.theme.bs};
+	list-style: none;
 
 	h2 {
-		border-bottom: 2px solid red;
 		margin-top: 0;
 		margin-bottom: 2rem;
 		padding-bottom: 2rem;
+		border-bottom: 2px solid red;
 	}
 
 	.images {
@@ -21,8 +21,8 @@ const OrderItemStyles = styled.li`
 
 		img {
 			height: 200px;
-			object-fit: cover;
 			width: 100%;
+			object-fit: cover;
 		}
 	}
 
@@ -34,8 +34,8 @@ const OrderItemStyles = styled.li`
 
 		& > * {
 			margin: 0;
-			background: rgba(0, 0, 0, 0.03);
 			padding: 1rem 0;
+			background: rgba(0, 0, 0, 0.03);
 		}
 
 		strong {

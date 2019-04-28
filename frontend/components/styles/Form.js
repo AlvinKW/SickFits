@@ -13,13 +13,13 @@ const loading = keyframes`
 `;
 
 const Form = styled.form`
-	box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.05);
-	background: rgba(0, 0, 0, 0.02);
-	border: 5px solid white;
 	padding: 20px;
+	border: 5px solid white;
+	box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.05);
 	font-size: 1.5rem;
-	line-height: 1.5;
 	font-weight: 600;
+	line-height: 1.5;
+	background: rgba(0, 0, 0, 0.02);
 
 	label {
 		display: block;
@@ -29,8 +29,8 @@ const Form = styled.form`
 	input, textarea, select {
 		width: 100%;
 		padding: 0.5rem;
-		font-size: 1rem;
 		border: 1px solid black;
+		font-size: 1rem;
 
 		&:focus {
 			outline: 0;
@@ -40,27 +40,27 @@ const Form = styled.form`
 
 	button, input[type='submit'] {
 		width: auto;
-		background: red;
-		color: white;
+		padding: 0.5rem 1.2rem;
 		border: 0;
 		font-size: 2rem;
 		font-weight: 600;
-		padding: 0.5rem 1.2rem;
+		background: red;
+		color: white;
 		cursor: pointer;
 	}
 
 	fieldset {
-		border: 0;
 		padding: 0;
+		border: 0;
 
 		&[disabled] {
 			opacity: 0.5;
 		}
 
 		&::before {
-			height: 10px;
 			content: '';
 			display: block;
+			height: 10px;
 			background-image: linear-gradient(to right, #ff3019 0%, #e2b04a 50%, #ff3019 100%);
 		}
 

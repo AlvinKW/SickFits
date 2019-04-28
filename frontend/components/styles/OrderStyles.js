@@ -3,10 +3,10 @@ import styled from 'styled-components';
 const OrderStyles = styled.div`
 	max-width: 1000px;
 	margin: 0 auto;
-	border: 1px solid ${props => props.theme.offWhite};
-	box-shadow: ${props => props.theme.bs};
 	padding: 2rem;
+	border: 1px solid ${props => props.theme.offWhite};
 	border-top: 10px solid red;
+	box-shadow: ${props => props.theme.bs};
 
 	& > p {
 		display: grid;
@@ -25,17 +25,17 @@ const OrderStyles = styled.div`
 	}
 
 	.order-item {
-		border-bottom: 1px solid ${props => props.theme.offWhite};
 		display: grid;
 		grid-template-columns: 300px 1fr;
-		align-items: center;
 		grid-gap: 2rem;
+		align-items: center;
 		margin: 2rem 0;
 		padding-bottom: 2rem;
+		border-bottom: 1px solid ${props => props.theme.offWhite};
 
 		img {
-			width: 100%;
 			height: 100%;
+			width: 100%;
 			object-fit: cover;
 		}
 	}

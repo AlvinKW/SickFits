@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 
 const PaginationStyles = styled.div`
-	text-align: center;
 	display: inline-grid;
 	grid-template-columns: repeat(4, auto);
-	align-items: stretch;
 	justify-content: center;
+	align-items: stretch;
 	align-content: center;
 	margin: 2rem 0;
 	border: 1px solid ${props => props.theme.lightGrey};
 	border-radius: 10px;
+	text-align: center;
 
 	& > * {
 		margin: 0;
