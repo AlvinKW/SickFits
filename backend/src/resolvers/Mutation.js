@@ -4,6 +4,7 @@ const { promisify } = require('util');
 const { randomBytes } = require('crypto');
 
 const { transport, makeANiceEmail } = require('../mail');
+const { hasPermission } = require('../utils');
 
 const Mutation = {
 	async createItem(parent, args, ctx, info) {
@@ -32,7 +33,6 @@ const Mutation = {
 	},
 	async deleteItem(parent, args, ctx, info) {
 		const where = { id: args.id };
-		// const item = await ctx.db.query.item({ where }, `{ id title }`);
 		return ctx.db.mutation.deleteItem({ where }, info);
 	},
 	async signUp(parent, args, ctx, info) {
@@ -137,6 +137,24 @@ const Mutation = {
 		});
 
 		return updatedUser;
+	},
+	async updatePermissions(parent, args, ctx, info) {
+		if (!ctx.request.userID) {
+			throw new Error('You must be logged in to do that!');
+		}
+
+		const currentUser = await ctx.db.query.user({
+			where: { id: ctx.request.userID },
+		}, info);
+
+		hasPermission(currentUser, ['ADMIN', 'PERMISSIONUPDATE']);
+
+		return ctx.db.mutation.updateUser({
+			data: {
+				permissions: { set: args.permissions },
+			},
+			where: { id: args.userID },
+		}, info);
 	},
 };
 
