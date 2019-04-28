@@ -4,7 +4,7 @@ import { Mutation } from 'react-apollo';
 import PropTypes from 'prop-types';
 
 import Form from './styles/Form';
-import Error from './ErrorMessage';
+import Error from './Error';
 
 import { CURRENT_USER_QUERY } from './User';
 

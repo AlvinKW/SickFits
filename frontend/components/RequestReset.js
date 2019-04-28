@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
 
 import Form from './styles/Form';
-import Error from './ErrorMessage';
+import Error from './Error';
 
 const REQUEST_RESET_MUTATION = gql`
 	mutation REQUEST_RESET_MUTATION($email: String!) {

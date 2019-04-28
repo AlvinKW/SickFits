@@ -3,7 +3,7 @@ import { Query } from 'react-apollo';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import Error from './ErrorMessage';
+import Error from './Error';
 import Table from './styles/Table';
 import SickButton from './styles/SickButton';
 

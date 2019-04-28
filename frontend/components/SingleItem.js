@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Query } from 'react-apollo';
 import Head from 'next/head';
 
-import Error from './ErrorMessage';
+import Error from './Error';
 
 const SINGLE_ITEM_QUERY = gql`
 	query SINGLE_ITEM_QUERY($id: ID!) {

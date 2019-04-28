@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 import { Query, Mutation } from 'react-apollo';
 
 import Form from './styles/Form';
-import Error from './ErrorMessage';
+import Error from './Error';
 
 const SINGLE_ITEM_QUERY = gql`
 	query SINGLE_ITEM_QUERY($id: ID!) {
