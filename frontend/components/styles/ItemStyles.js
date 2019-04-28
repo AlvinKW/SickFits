@@ -33,8 +33,11 @@ const Item = styled.div`
 		& > * {
 			padding: 1rem;
 			border: 0;
+			font-family: "radnika_next";
 			font-size: 1rem;
 			background: white;
+			color: ${props => props.theme.black};
+			cursor: pointer;
 		}
 	}
 `;
