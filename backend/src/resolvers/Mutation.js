@@ -32,6 +32,10 @@ const Mutation = {
 		}, info);
 	},
 	async deleteItem(parent, args, ctx, info) {
+		if (!ctx.request.userID) {
+			throw new Error('You must be logged in to do that!');
+		}
+
 		const where = { id: args.id };
 		const item = await ctx.db.query.item({ where }, '{ id title user { id } }');
 
