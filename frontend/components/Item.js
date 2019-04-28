@@ -26,7 +26,7 @@ class Item extends Component {
 
 				<div className="buttonList">
 					<Link href={{ pathname: '/update', query: { id: item.id } }}>
-						<a>Edit</a>
+						<a>Edit This Item</a>
 					</Link>
 					<button>Add To Cart</button>
 					<DeleteItem id={item.id}>Delete This Item</DeleteItem>
