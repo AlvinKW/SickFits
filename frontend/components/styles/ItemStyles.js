@@ -7,11 +7,13 @@ const Item = styled.div`
 	position: relative;
 	display: flex;
 	flex-direction: column;
+
 	img {
 		width: 100%;
 		height: 400px;
 		object-fit: cover;
 	}
+
 	p {
 		font-size: 12px;
 		line-height: 2;
@@ -20,6 +22,7 @@ const Item = styled.div`
 		padding: 0 3rem;
 		font-size: 1.5rem;
 	}
+
 	.buttonList {
 		display: grid;
 		width: 100%;
@@ -27,11 +30,12 @@ const Item = styled.div`
 		grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 		grid-gap: 1px;
 		background: ${props => props.theme.lightGrey};
+
 		& > * {
-		background: white;
-		border: 0;
-		font-size: 1rem;
-		padding: 1rem;
+			background: white;
+			border: 0;
+			font-size: 1rem;
+			padding: 1rem;
 		}
 	}
 `;

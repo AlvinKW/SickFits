@@ -23,16 +23,18 @@ const Logo = styled.h1`
 	font-size: 4rem;
 	transform: skew(-7deg);
 	z-index: 2;
+
+	@media (max-width: 1300px) {
+		margin: 0;
+		text-align: center;
+	}
+
 	a {
 		padding: 0.5rem 1rem;
 		background: ${props => props.theme.red};
 		color: white;
 		text-transform: uppercase;
 		text-decoration: none;
-	}
-	@media (max-width: 1300px) {
-		margin: 0;
-		text-align: center;
 	}
 `;
 
@@ -43,11 +45,13 @@ const StyledHeader = styled.header`
 		justify-content: space-between;
 		align-items: stretch;
 		border-bottom: 10px solid ${props => props.theme.black};
+
 		@media (max-width: 1300px) {
 			grid-template-columns: 1fr;
 			justify-content: center;
 		}
 	}
+
 	.sub-bar {
 		display: grid;
 		grid-template-columns: 1fr auto;

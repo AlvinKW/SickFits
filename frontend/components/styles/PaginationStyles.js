@@ -10,14 +10,17 @@ const PaginationStyles = styled.div`
 	margin: 2rem 0;
 	border: 1px solid ${props => props.theme.lightGrey};
 	border-radius: 10px;
+
 	& > * {
 		margin: 0;
 		padding: 15px 30px;
 		border-right: 1px solid ${props => props.theme.lightGrey};
+
 		&:last-child {
-		border-right: 0;
+			border-right: 0;
 		}
 	}
+
 	a[aria-disabled='true'] {
 		color: grey;
 		pointer-events: none;

@@ -25,11 +25,13 @@ const SingleItemStyles = styled.div`
 	max-width: 1200px;
 	margin: 2rem auto;
 	box-shadow: ${props => props.theme.bs};
+
 	img {
 		height: 100%;
 		width: 100%;
 		object-fit: contain;
 	}
+
 	.details {
 		margin: 3rem;
 		font-size: 2rem;
