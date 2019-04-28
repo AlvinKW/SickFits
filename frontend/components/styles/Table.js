@@ -11,7 +11,7 @@ const Table = styled.table`
 
 	td,th {
 		position: relative;
-		padding: 10px 5px;
+		padding: 5px;
 		border-bottom: 1px solid ${props => props.theme.offWhite};
 		border-right: 1px solid ${props => props.theme.offWhite};
 
@@ -22,6 +22,11 @@ const Table = styled.table`
 			button {
 				width: 100%;
 			}
+		}
+
+		label {
+			display: block;
+			padding: 10px 5px;
 		}
 	}
 
