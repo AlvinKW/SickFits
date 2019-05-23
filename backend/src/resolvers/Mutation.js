@@ -7,53 +7,53 @@ const { transport, makeANiceEmail } = require('../mail');
 const { hasPermission } = require('../utils');
 
 const Mutation = {
-	async createItem(parent, args, ctx, info) {
-		if (!ctx.request.userID) {
+	async createItem(parent, args, context, info) {
+		if (!context.request.userID) {
 			throw new Error('You must be logged in to do that!');
 		}
 
-		const item = await ctx.db.mutation.createItem({
+		return await context.db.mutation.createItem({
 			data: {
 				...args,
 				user: {
-					connect: { id: ctx.request.userID },
+					connect: { id: context.request.userID },
 				},
 			},
 		}, info);
-		return item;
 	},
-	updateItem(parent, args, ctx, info) {
-		const updates = { ...args };
-		delete updates.id;
+	updateItem(parent, args, context, info) {
+		const updatedItem = { ...args };
+		delete updatedItem.id;
 
-		return ctx.db.mutation.updateItem({
-			data: updates,
+		return context.db.mutation.updateItem({
+			data: updatedItem,
 			where: { id: args.id },
 		}, info);
 	},
-	async deleteItem(parent, args, ctx, info) {
-		if (!ctx.request.userID) {
+	async deleteItem(parent, args, context, info) {
+		if (!context.request.userID) {
 			throw new Error('You must be logged in to do that!');
 		}
 
 		const where = { id: args.id };
-		const item = await ctx.db.query.item({ where }, '{ id title user { id } }');
+		const item = await context.db.query.item({ where }, '{ id title user { id } }');
 
-		const ownsItem = item.user.id === ctx.request.userID;
-		const hasPermissions = ctx.request.user.permissions.some(permission => {
+		const ownsItem = item.user.id === context.request.userID;
+		const hasPermissions = context.request.user.permissions.some(permission => {
 			return ['ADMIN', 'ITEMDELETE'].includes(permission);
 		});
+
 		if (!ownsItem && !hasPermissions) {
 			throw new Error('You do not have permission to do that!');
 		}
 
-		return ctx.db.mutation.deleteItem({ where }, info);
+		return context.db.mutation.deleteItem({ where }, info);
 	},
-	async signUp(parent, args, ctx, info) {
+	async signUp(parent, args, context, info) {
 		args.email = args.email.toLowerCase();
 		const password = await bcrypt.hash(args.password, 10);
 
-		const user = await ctx.db.mutation.createUser({
+		const user = await context.db.mutation.createUser({
 			data: {
 				...args,
 				password,
@@ -62,15 +62,15 @@ const Mutation = {
 		}, info);
 
 		const token = jwt.sign({ userID: user.id }, process.env.APP_SECRET);
-		ctx.response.cookie('token', token, {
+		context.response.cookie('token', token, {
 			httpOnly: true,
 			maxAge: 1000 * 60 * 60 * 24 * 365, // 1 Year Cookie
 		});
 
 		return user;
 	},
-	async signIn(parent, { email, password }, ctx) {
-		const user = await ctx.db.query.user({ where: { email } });
+	async signIn(parent, { email, password }, context) {
+		const user = await context.db.query.user({ where: { email } });
 		if (!user) {
 			throw new Error(`No such user found for email: ${email}`);
 		}
@@ -81,19 +81,21 @@ const Mutation = {
 		}
 
 		const token = jwt.sign({ userID: user.id }, process.env.APP_SECRET);
-		ctx.response.cookie('token', token, {
+		context.response.cookie('token', token, {
 			httpOnly: true,
 			maxAge: 1000 * 60 * 60 * 24 * 365, // 1 Year Cookie
 		});
 
 		return user;
 	},
-	signOut(parent, args, ctx) {
-		ctx.response.clearCookie('token');
+	signOut(parent, args, context) {
+		context.response.clearCookie('token');
 		return { message: 'Goodbye!' };
 	},
-	async requestReset(parent, args, ctx) {
-		const user = await ctx.db.query.user({ where: { email: args.email } });
+	async requestReset(parent, args, context) {
+		const user = await context.db.query.user({
+			where: { email: args.email },
+		});
 		if (!user) {
 			throw new Error(`No such user found for email: ${args.email}`);
 		}
@@ -101,9 +103,9 @@ const Mutation = {
 		const randomBytesPromise = promisify(randomBytes);
 		const resetToken = (await randomBytesPromise(20)).toString('hex');
 		const resetTokenExpiry = Date.now() + 3600000; // 1 Hour
-		await ctx.db.mutation.updateUser({
-			where: { email: args.email },
+		await context.db.mutation.updateUser({
 			data: { resetToken, resetTokenExpiry },
+			where: { email: args.email },
 		});
 
 		await transport.sendMail({
@@ -119,12 +121,12 @@ const Mutation = {
 
 		return { message: 'Check your email for a reset link!' };
 	},
-	async resetPassword(parent, args, ctx) {
+	async resetPassword(parent, args, context) {
 		if (args.password !== args.confirmPassword) {
 			throw new Error('The passwords don\'t match!');
 		}
 
-		const [user] = await ctx.db.query.users({
+		const [user] = await context.db.query.users({
 			where: {
 				resetToken: args.resetToken,
 				resetTokenExpiry_gte: Date.now() - 3600000,
@@ -135,60 +137,60 @@ const Mutation = {
 		}
 
 		const password = await bcrypt.hash(args.password, 10);
-		const updatedUser = await ctx.db.mutation.updateUser({
-			where: { email: user.email },
+		const updatedUser = await context.db.mutation.updateUser({
 			data: {
 				password,
 				resetToken: null,
 				resetTokenExpiry: null,
 			},
+			where: { email: user.email },
 		});
 
 		const token = jwt.sign({ userID: updatedUser.id }, process.env.APP_SECRET);
-		ctx.response.cookie('token', token, {
+		context.response.cookie('token', token, {
 			httpOnly: true,
 			maxAge: 1000 * 60 * 60 * 24 * 365, // 1 Year Cookie
 		});
 
 		return updatedUser;
 	},
-	async updatePermissions(parent, args, ctx, info) {
-		if (!ctx.request.userID) {
+	async updatePermissions(parent, args, context, info) {
+		if (!context.request.userID) {
 			throw new Error('You must be logged in to do that!');
 		}
 
-		const currentUser = await ctx.db.query.user({
-			where: { id: ctx.request.userID },
+		const currentUser = await context.db.query.user({
+			where: { id: context.request.userID },
 		}, info);
 
 		hasPermission(currentUser, ['ADMIN', 'PERMISSIONUPDATE']);
 
-		return ctx.db.mutation.updateUser({
+		return context.db.mutation.updateUser({
 			data: {
 				permissions: { set: args.permissions },
 			},
 			where: { id: args.userID },
 		}, info);
 	},
-	async addToCart(parent, args, ctx) {
-		const { userID } = ctx.request;
+	async addToCart(parent, args, context) {
+		const { userID } = context.request;
 		if (!userID) {
 			throw new Error('You must be logged in to do that!');
 		}
 
-		const [existingCartItem] = await ctx.db.query.cartItems({
+		const [existingCartItem] = await context.db.query.cartItems({
 			item: { id: args.id },
 			user: { id: userID },
 		});
 
 		if (existingCartItem) {
-			return ctx.db.mutation.updateCartItem({
+			return context.db.mutation.updateCartItem({
 				where: { id: existingCartItem.id },
 				data: { quantity: existingCartItem.quantity + 1 },
 			});
 		}
 
-		return ctx.db.mutation.createCartItem({
+		return context.db.mutation.createCartItem({
 			data: {
 				item: {
 					connect: { id: args.id },
