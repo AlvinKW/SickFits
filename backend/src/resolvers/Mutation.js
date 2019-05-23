@@ -69,8 +69,8 @@ const Mutation = {
 
 		return user;
 	},
-	async signIn(parent, { email, password }, context, info) {
-		const user = await context.db.query.user({ where: { email } }, info);
+	async signIn(parent, { email, password }, context) {
+		const user = await context.db.query.user({ where: { email } });
 		if (!user) {
 			throw new Error(`No such user found for email: ${email}`);
 		}
@@ -161,7 +161,7 @@ const Mutation = {
 
 		const currentUser = await context.db.query.user({
 			where: { id: context.request.userID },
-		});
+		}, info);
 
 		hasPermission(currentUser, ['ADMIN', 'PERMISSIONUPDATE']);
 

@@ -8,7 +8,7 @@ const Query = {
 	itemsConnection: forwardTo('db'),
 	async me(parent, args, context, info) {
 		if (!context.request.userID) {
-			throw new Error('You must be logged in to do that!');
+			return null;
 		}
 
 		return await context.db.query.user({
