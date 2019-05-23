@@ -3,6 +3,7 @@ import Link from 'next/link';
 import PropTypes from 'prop-types';
 
 import DeleteItem from './DeleteItem';
+import AddToCart from './AddToCart';
 
 import ItemStyles from './styles/ItemStyles';
 import Title from './styles/Title';
@@ -28,7 +29,7 @@ class Item extends Component {
 					<Link href={{ pathname: '/update', query: { id: item.id } }}>
 						<a>Edit This Item</a>
 					</Link>
-					<button>Add To Cart</button>
+					<AddToCart id={item.id} />
 					<DeleteItem id={item.id}>Delete This Item</DeleteItem>
 				</div>
 			</ItemStyles>
