@@ -21,11 +21,11 @@ const Mutation = {
 			},
 		}, info);
 	},
-	updateItem(parent, args, context, info) {
+	async updateItem(parent, args, context, info) {
 		const updatedItem = { ...args };
 		delete updatedItem.id;
 
-		return context.db.mutation.updateItem({
+		return await context.db.mutation.updateItem({
 			data: updatedItem,
 			where: { id: args.id },
 		}, info);
@@ -47,7 +47,7 @@ const Mutation = {
 			throw new Error('You do not have permission to do that!');
 		}
 
-		return context.db.mutation.deleteItem({ where }, info);
+		return await context.db.mutation.deleteItem({ where }, info);
 	},
 	async signUp(parent, args, context, info) {
 		args.email = args.email.toLowerCase();
@@ -69,8 +69,8 @@ const Mutation = {
 
 		return user;
 	},
-	async signIn(parent, { email, password }, context) {
-		const user = await context.db.query.user({ where: { email } });
+	async signIn(parent, { email, password }, context, info) {
+		const user = await context.db.query.user({ where: { email } }, info);
 		if (!user) {
 			throw new Error(`No such user found for email: ${email}`);
 		}
@@ -121,7 +121,7 @@ const Mutation = {
 
 		return { message: 'Check your email for a reset link!' };
 	},
-	async resetPassword(parent, args, context) {
+	async resetPassword(parent, args, context, info) {
 		if (args.password !== args.confirmPassword) {
 			throw new Error('The passwords don\'t match!');
 		}
@@ -144,7 +144,7 @@ const Mutation = {
 				resetTokenExpiry: null,
 			},
 			where: { email: user.email },
-		});
+		}, info);
 
 		const token = jwt.sign({ userID: updatedUser.id }, process.env.APP_SECRET);
 		context.response.cookie('token', token, {
@@ -161,18 +161,18 @@ const Mutation = {
 
 		const currentUser = await context.db.query.user({
 			where: { id: context.request.userID },
-		}, info);
+		});
 
 		hasPermission(currentUser, ['ADMIN', 'PERMISSIONUPDATE']);
 
-		return context.db.mutation.updateUser({
+		return await context.db.mutation.updateUser({
 			data: {
 				permissions: { set: args.permissions },
 			},
 			where: { id: args.userID },
 		}, info);
 	},
-	async addToCart(parent, args, context) {
+	async addToCart(parent, args, context, info) {
 		const { userID } = context.request;
 		if (!userID) {
 			throw new Error('You must be logged in to do that!');
@@ -190,7 +190,7 @@ const Mutation = {
 			});
 		}
 
-		return context.db.mutation.createCartItem({
+		return await context.db.mutation.createCartItem({
 			data: {
 				item: {
 					connect: { id: args.id },
@@ -199,7 +199,7 @@ const Mutation = {
 					connect: { id: userID },
 				},
 			},
-		});
+		}, info);
 	},
 };
 
