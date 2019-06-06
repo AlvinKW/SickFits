@@ -179,8 +179,10 @@ const Mutation = {
 		}
 
 		const [existingCartItem] = await context.db.query.cartItems({
-			item: { id: args.id },
-			user: { id: userID },
+			where: {
+				item: { id: args.id },
+				user: { id: userID },
+			},
 		});
 
 		if (existingCartItem) {
