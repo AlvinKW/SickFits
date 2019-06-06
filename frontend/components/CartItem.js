@@ -23,6 +23,15 @@ const CartItemStyles = styled.li`
 `;
 
 function CartItem({ cartItem }) {
+	if (!cartItem.item) {
+		return (
+			<CartItemStyles>
+				<p>This item has been removed.</p>
+				<RemoveFromCart id={cartItem.id} />
+			</CartItemStyles>
+		);
+	}
+
 	return (
 		<CartItemStyles>
 			<img src={cartItem.item.image} alt={cartItem.item.title} width="100" />
