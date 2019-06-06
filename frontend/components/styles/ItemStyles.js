@@ -38,6 +38,10 @@ const Item = styled.div`
 			background: white;
 			color: ${props => props.theme.black};
 			cursor: pointer;
+
+			&:disabled {
+				color: ${props => props.theme.lightGrey};
+			}
 		}
 	}
 `;
