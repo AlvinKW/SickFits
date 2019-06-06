@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { Mutation } from 'react-apollo';
 
 import User from './User';
+import CartCount from './CartCount';
 import SignOut from './SignOut';
 
 import NavStyles from './styles/NavStyles';
@@ -26,7 +27,14 @@ function Nav() {
 							</Link>
 							<Mutation mutation={TOGGLE_CART_MUTATION}>
 								{toggleCart => (
-									<button onClick={toggleCart}>My Cart</button>
+									<button onClick={toggleCart}>
+										My Cart
+										<CartCount
+											count={me.cart.reduce((tally, cartItem) => {
+												return tally + cartItem.quantity;
+											}, 0)}
+										/>
+									</button>
 								)}
 							</Mutation>
 							<Link href="/account">
