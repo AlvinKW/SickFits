@@ -203,6 +203,25 @@ const Mutation = {
 			},
 		}, info);
 	},
+	async removeFromCart(parent, args, context, info) {
+		const cartItem = await context.db.query.cartItem({
+			where: {
+				id: args.id,
+			},
+		}, '{ id, user { id } }');
+
+		if (!cartItem) {
+			throw new Error('No Cart Item Found!');
+		} else if (cartItem.user.id !== context.request.userID) {
+			throw new Error('You do not have permission to do that!');
+		}
+
+		return context.db.mutation.deleteCartItem({
+			where: {
+				id: args.id,
+			},
+		}, info);
+	},
 };
 
 module.exports = Mutation;
