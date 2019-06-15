@@ -8,6 +8,7 @@ import CartStyles from './styles/CartStyles';
 import CloseButton from './styles/CloseButton';
 import Supreme from './styles/Supreme';
 import CartItem from './CartItem';
+import TakeMyMoney from './TakeMyMoney';
 import SickButton from './styles/SickButton';
 
 import formatMoney from '../lib/formatMoney';
@@ -52,7 +53,9 @@ function Cart() {
 						</ul>
 						<footer>
 							<p>{formatMoney(calcTotalPrice(me.cart))}</p>
-							<SickButton>Checkout</SickButton>
+							<TakeMyMoney>
+								<SickButton>Checkout</SickButton>
+							</TakeMyMoney>
 						</footer>
 					</CartStyles>
 				);
