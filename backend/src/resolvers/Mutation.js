@@ -5,6 +5,7 @@ const { randomBytes } = require('crypto');
 
 const { transport, makeANiceEmail } = require('../mail');
 const { hasPermission } = require('../utils');
+const stripe = require('../stripe');
 
 const Mutation = {
 	async createItem(parent, args, context, info) {
@@ -221,6 +222,33 @@ const Mutation = {
 				id: args.id,
 			},
 		}, info);
+	},
+	async createOrder(parent, args, context, info) {
+		const { userID } = context.request;
+		if (!userID) {
+			throw new Error('You must be logged in to do that!');
+		}
+
+		const user = await context.db.query.user({ where: { id: userID } }, `{
+			id
+			name
+			email
+			cart {
+				id
+				quantity
+				item { id title description image price }
+			}
+		}`);
+
+		const amount = user.cart.reduce((tally, cartItem) => {
+			return tally + cartItem.item.price * cartItem.quantity;
+		}, 0);
+
+		const charge = await stripe.charges.create({
+			amount: amount,
+			currency: 'USD',
+			source: args.token,
+		});
 	},
 };
 
