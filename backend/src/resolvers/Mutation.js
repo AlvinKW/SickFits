@@ -223,7 +223,7 @@ const Mutation = {
 			},
 		}, info);
 	},
-	async createOrder(parent, args, context, info) {
+	async createOrder(parent, args, context) {
 		const { userID } = context.request;
 		if (!userID) {
 			throw new Error('You must be logged in to do that!');
@@ -236,7 +236,7 @@ const Mutation = {
 			cart {
 				id
 				quantity
-				item { id title description image price }
+				item { id title description image largeImage price }
 			}
 		}`);
 
@@ -249,6 +249,34 @@ const Mutation = {
 			currency: 'USD',
 			source: args.token,
 		});
+
+		const orderItems = user.cart.map(cartItem => {
+			const orderItem = {
+				...cartItem.item,
+				quantity: cartItem.quantity,
+				user: { connect: { id: userID } },
+			};
+			delete orderItem.id;
+			return orderItem;
+		});
+
+		const order = await context.db.mutation.createOrder({
+			data: {
+				charge: charge.id,
+				total: charge.amount,
+				items: { create: orderItems },
+				user: { connect: { id: userID } },
+			},
+		});
+
+		const cartItemIDs = user.cart.map(cartItem => cartItem.id);
+		await context.db.mutation.deleteManyCartItems({
+			where: {
+				id_in: cartItemIDs,
+			},
+		});
+
+		return order;
 	},
 };
 

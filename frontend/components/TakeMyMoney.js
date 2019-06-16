@@ -31,8 +31,8 @@ function totalItems(cart) {
 }
 
 class TakeMyMoney extends Component {
-	onTokenHandler = (response, createOrder) => {
-		createOrder({
+	onTokenHandler = async (response, createOrder) => {
+		await createOrder({
 			variables: { token: response.id },
 		}).catch(error => {
 			alert(error.message);
@@ -51,7 +51,7 @@ class TakeMyMoney extends Component {
 							<StripeCheckout
 								name="Sick Fits"
 								description={`Order of ${totalItems(me.cart)} items`}
-								image={me.cart[0].item && me.cart[0].item.image}
+								image={me.cart.length && me.cart[0].item && me.cart[0].item.image}
 								amount={calcTotalPrice(me.cart)}
 								currency="USD"
 								stripeKey={stripeKey}
