@@ -37,9 +37,6 @@ function Nav() {
 									</button>
 								)}
 							</Mutation>
-							<Link href="/account">
-								<a>Account</a>
-							</Link>
 							<SignOut />
 						</>
 					)}
