@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import gql from 'graphql-tag';
 import StripeCheckout from 'react-stripe-checkout';
 import { Mutation } from 'react-apollo';
-import Router from 'next/router';
 import NProgress from 'nprogress';
-import PropTypes from 'prop-types';
+import Router from 'next/router';
 
-import Error from './Error';
 import User, { CURRENT_USER_QUERY } from './User';
 
 import { stripeKey } from '../config';
@@ -32,10 +30,17 @@ function totalItems(cart) {
 
 class TakeMyMoney extends Component {
 	onTokenHandler = async (response, createOrder) => {
-		await createOrder({
+		NProgress.start();
+
+		const order = await createOrder({
 			variables: { token: response.id },
 		}).catch(error => {
 			alert(error.message);
+		});
+
+		Router.push({
+			pathname: '/order',
+			query: { id: order.data.createOrder.id },
 		});
 	};
 
