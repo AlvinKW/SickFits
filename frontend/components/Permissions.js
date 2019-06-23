@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import Error from './Error';
 import Table from './styles/Table';
-import SickButton from './styles/SickButton';
+import SickButton from './SickButton';
 
 const possiblePermissions = [
 	'ADMIN',
