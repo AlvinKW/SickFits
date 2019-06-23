@@ -3,10 +3,10 @@ import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
 import Router from 'next/router';
 
-import Form from './styles/Form';
-import Error from './Error';
-
 import { ALL_ITEMS_QUERY } from './Items';
+
+import Form from './Form';
+import Error from './Error';
 
 const CREATE_ITEM_MUTATION = gql`
 	mutation CREATE_ITEM_MUTATION (

@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import gql from 'graphql-tag';
+import styled, { keyframes } from 'styled-components';
 import Router from 'next/router';
 import debounce from 'lodash.debounce';
 import Downshift, { resetIdCounter } from 'downshift';
 import { ApolloConsumer } from 'react-apollo';
-
-import { DropDown, DropDownItem, SearchStyles } from './styles/DropDown';
 
 const SEARCH_ITEMS_QUERY = gql`
 	query SEARCH_ITEMS_QUERY($searchTerm: String!) {
@@ -13,6 +12,53 @@ const SEARCH_ITEMS_QUERY = gql`
 			id
 			title
 			image
+		}
+	}
+`;
+
+const StyledDropDown = styled.div`
+	position: absolute;
+	width: 100%;
+	border: 1px solid ${props => props.theme.lightGrey};
+	z-index: 2;
+`;
+
+const StyledDropDownItem = styled.div`
+	display: flex;
+	align-items: center;
+	padding: 1rem;
+	border-bottom: 1px solid ${props => props.theme.lightGrey};
+	border-left: 10px solid ${props => (props.highlighted ? props.theme.lightGrey : 'white')};
+	background: ${props => (props.highlighted ? '#f7f7f7' : 'white')};
+	transition: all 0.2s;
+	${props => (props.highlighted ? 'padding-left: 2rem;' : null)};
+
+	img {
+		margin-right: 10px;
+	}
+`;
+
+const glow = keyframes`
+	from {
+		box-shadow: 0 0 0px yellow;
+	}
+
+	to {
+		box-shadow: 0 0 10px 1px yellow;
+	}
+`;
+
+const StyledSearch = styled.div`
+	position: relative;
+
+	input {
+		width: 100%;
+		padding: 10px;
+		border: 0;
+		font-size: 2rem;
+
+		&.loading {
+			animation: ${glow} 0.5s ease-in-out infinite alternate;
 		}
 	}
 `;
@@ -47,7 +93,7 @@ class Search extends Component {
 	render() {
 		resetIdCounter();
 		return (
-			<SearchStyles>
+			<StyledSearch>
 				<Downshift
 					onChange={routeToItem}
 					itemToString={item => (item === null ? '' : item.title)}
@@ -71,28 +117,28 @@ class Search extends Component {
 								)}
 							</ApolloConsumer>
 							{isOpen && (
-								<DropDown>
+								<StyledDropDown>
 									{this.state.items.map((item, index) => (
-										<DropDownItem
+										<StyledDropDownItem
 											key={item.id}
 											highlighted={index === highlightedIndex}
 											{...getItemProps({ item })}
 										>
 											<img width="50" src={item.image} alt={item.title} />
 											{item.title}
-										</DropDownItem>
+										</StyledDropDownItem>
 									))}
 									{!this.state.items.length && !this.state.loading && (
-										<DropDownItem>
+										<StyledDropDownItem>
 											Nothing Found For {inputValue}
-										</DropDownItem>
+										</StyledDropDownItem>
 									)}
-								</DropDown>
+								</StyledDropDown>
 							)}
 						</div>
 					)}
 				</Downshift>
-			</SearchStyles>
+			</StyledSearch>
 		);
 	}
 }

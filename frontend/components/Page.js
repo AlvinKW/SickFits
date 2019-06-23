@@ -50,7 +50,7 @@ const StyledPage = styled.div`
 	color: ${props => props.theme.black};
 `;
 
-const Inner = styled.div`
+const StyledContent = styled.div`
 	max-width: ${props => props.theme.maxWidth};
 	margin: 0 auto;
 	padding: 2rem;
@@ -63,9 +63,9 @@ class Page extends Component {
 				<StyledPage>
 					<Meta />
 					<Header />
-					<Inner>
+					<StyledContent>
 						{this.props.children}
-					</Inner>
+					</StyledContent>
 				</StyledPage>
 			</ThemeProvider>
 		);

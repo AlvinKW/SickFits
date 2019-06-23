@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
 import PropTypes from 'prop-types';
 
-import Form from './styles/Form';
+import Form from './Form';
 import Error from './Error';
 
 import { CURRENT_USER_QUERY } from './User';

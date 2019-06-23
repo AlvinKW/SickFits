@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import gql from 'graphql-tag';
 import { Query, Mutation } from 'react-apollo';
 
-import Form from './styles/Form';
+import Form from './Form';
 import Error from './Error';
 
 const SINGLE_ITEM_QUERY = gql`

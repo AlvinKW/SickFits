@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
 
-import Form from './styles/Form';
+import Form from './Form';
 import Error from './Error';
 
 const REQUEST_RESET_MUTATION = gql`

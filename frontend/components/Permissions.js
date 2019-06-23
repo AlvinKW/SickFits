@@ -1,10 +1,10 @@
 import gql from 'graphql-tag';
+import styled from 'styled-components';
 import { Query, Mutation } from 'react-apollo';
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import Error from './Error';
-import Table from './styles/Table';
 import SickButton from './SickButton';
 
 const possiblePermissions = [
@@ -38,6 +38,43 @@ const UPDATE_PERMISSIONS_MUTATION = gql`
 	}
 `;
 
+const StyledTable = styled.table`
+	width: 100%;
+	border: 1px solid ${props => props.theme.offWhite};
+	border-spacing: 0;
+
+	thead {
+		font-size: 10px;
+	}
+
+	td,th {
+		position: relative;
+		padding: 5px;
+		border-bottom: 1px solid ${props => props.theme.offWhite};
+		border-right: 1px solid ${props => props.theme.offWhite};
+
+		&:last-child {
+			width: 150px;
+			border-right: none;
+			
+			button {
+				width: 100%;
+			}
+		}
+
+		label {
+			display: block;
+			padding: 10px 5px;
+		}
+	}
+
+	tr {
+		&:hover {
+			background: ${props => props.theme.offWhite};
+		}
+	}
+`;
+
 function Permissions() {
 	return (
 		<Query query={ALL_USERS_QUERY}>
@@ -46,7 +83,7 @@ function Permissions() {
 					<Error error={error} />
 					<div>
 						<h2>Manage Permissions</h2>
-						<Table>
+						<StyledTable>
 							<thead>
 								<tr>
 									<th>Name</th>
@@ -60,7 +97,7 @@ function Permissions() {
 							<tbody>
 								{data.users.map(user => <UserPermissions key={user.id} user={user} />)}
 							</tbody>
-						</Table>
+						</StyledTable>
 					</div>
 				</div>
 			)}

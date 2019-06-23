@@ -5,10 +5,9 @@ import { Query } from 'react-apollo';
 import Link from 'next/link';
 import { formatDistance } from 'date-fns';
 
-import Error from './Error';
-import OrderItemStyles from './styles/OrderItemStyles';
-
 import formatMoney from '../lib/formatMoney';
+
+import Error from './Error';
 
 const USER_ORDERS_QUERY = gql`
 	query USER_ORDERS_QUERY {
@@ -34,6 +33,51 @@ const OrderUl = styled.ul`
 	grid-gap: 4rem;
 `;
 
+const StyledOrderItem = styled.li`
+	padding: 2rem;
+	border: 1px solid ${props => props.theme.offWhite};
+	box-shadow: ${props => props.theme.bs};
+	list-style: none;
+
+	h2 {
+		margin-top: 0;
+		margin-bottom: 2rem;
+		padding-bottom: 2rem;
+		border-bottom: 2px solid red;
+	}
+
+	.images {
+		display: grid;
+		grid-gap: 10px;
+		grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+		margin-top: 1rem;
+
+		img {
+			height: 200px;
+			width: 100%;
+			object-fit: cover;
+		}
+	}
+
+	.order-meta {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(20px, 1fr));
+		grid-gap: 1rem;
+		text-align: center;
+
+		& > * {
+			margin: 0;
+			padding: 1rem 0;
+			background: rgba(0, 0, 0, 0.03);
+		}
+
+		strong {
+			display: block;
+			margin-bottom: 1rem;
+		}
+	}
+`;
+
 class OrderList extends Component {
 	render() {
 		return (
@@ -50,7 +94,7 @@ class OrderList extends Component {
 							<h2>You have {orders.length} order(s).</h2>
 							<OrderUl>
 								{orders.map(order => (
-									<OrderItemStyles key={order.id}>
+									<StyledOrderItem key={order.id}>
 										<Link href={{ pathname: '/order', query: { id: order.id } }}>
 											<a>
 												<div className="order-meta">
@@ -74,7 +118,7 @@ class OrderList extends Component {
 												</div>
 											</a>
 										</Link>
-									</OrderItemStyles>
+									</StyledOrderItem>
 								))}
 							</OrderUl>
 						</div>

@@ -2,11 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-import RemoveFromCart from './RemoveFromCart';
-
 import formatMoney from '../lib/formatMoney';
 
-const CartItemStyles = styled.li`
+import RemoveFromCart from './RemoveFromCart';
+
+const StyledCartItem = styled.li`
 	display: grid;
 	grid-template-columns: auto 1fr auto;
 	align-items: center;
@@ -25,15 +25,15 @@ const CartItemStyles = styled.li`
 function CartItem({ cartItem }) {
 	if (!cartItem.item) {
 		return (
-			<CartItemStyles>
+			<StyledCartItem>
 				<p>This item has been removed.</p>
 				<RemoveFromCart id={cartItem.id} />
-			</CartItemStyles>
+			</StyledCartItem>
 		);
 	}
 
 	return (
-		<CartItemStyles>
+		<StyledCartItem>
 			<img src={cartItem.item.image} alt={cartItem.item.title} width="100" />
 			<div className="cart-item-details">
 				<h3>{cartItem.item.title}</h3>
@@ -46,7 +46,7 @@ function CartItem({ cartItem }) {
 				</p>
 			</div>
 			<RemoveFromCart id={cartItem.id} />
-		</CartItemStyles>
+		</StyledCartItem>
 	);
 }
 
