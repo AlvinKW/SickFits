@@ -1,20 +1,19 @@
 import casual from 'casual';
 
-// seed it so we get consistent results
 casual.seed(777);
 
-const fakeItem = () => ({
+const mockItem = () => ({
 	__typename: 'Item',
 	id: 'abc123',
 	price: 5000,
 	user: null,
 	image: 'dog-small.jpg',
-	title: 'dogs are best',
-	description: 'dogs',
+	title: 'Dogs are the best!',
+	description: 'Dogs',
 	largeImage: 'dog.jpg',
 });
 
-const fakeUser = () => ({
+const mockUser = () => ({
 	__typename: 'User',
 	id: '4234',
 	name: casual.name,
@@ -24,7 +23,7 @@ const fakeUser = () => ({
 	cart: [],
 });
 
-const fakeOrderItem = () => ({
+const mockOrderItem = () => ({
 	__typename: 'OrderItem',
 	id: casual.uuid,
 	image: `${casual.word}.jpg`,
@@ -34,27 +33,26 @@ const fakeOrderItem = () => ({
 	description: casual.words(),
 });
 
-const fakeOrder = () => ({
+const mockOrder = () => ({
 	__typename: 'Order',
 	id: 'ord123',
 	charge: 'ch_123',
 	total: 40000,
-	items: [fakeOrderItem(), fakeOrderItem()],
+	items: [mockOrderItem(), mockOrderItem()],
 	createdAt: '2018-04 - 06T19: 24: 16.000Z',
-	user: fakeUser(),
+	user: mockUser(),
 });
 
-const fakeCartItem = overrides => ({
+const mockCartItem = overrides => ({
 	__typename: 'CartItem',
 	id: 'omg123',
 	quantity: 3,
-	item: fakeItem(),
-	user: fakeUser(),
+	item: mockItem(),
+	user: mockUser(),
 	...overrides,
 });
 
-// Fake LocalStorage
-class LocalStorageMock {
+class MockLocalStorage {
 	constructor() {
 		this.store = {};
 	}
@@ -77,10 +75,10 @@ class LocalStorageMock {
 }
 
 export {
-	LocalStorageMock,
-	fakeItem,
-	fakeUser,
-	fakeCartItem,
-	fakeOrder,
-	fakeOrderItem,
+	MockLocalStorage,
+	mockItem,
+	mockUser,
+	mockCartItem,
+	mockOrder,
+	mockOrderItem,
 };
