@@ -1,28 +1,7 @@
-import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
 
-const CURRENT_USER_QUERY = gql`
-	query CURRENT_USER_QUERY {
-		me {
-			id
-			name
-			email
-			permissions
-			cart {
-				id
-				quantity
-				item {
-					id
-					title
-					description
-					image
-					price
-				}
-			}
-		}
-	}
-`;
+import { CURRENT_USER_QUERY } from '../lib/prismaQueries';
 
 function User(props) {
 	return (
@@ -36,5 +15,4 @@ User.propTypes = {
 	children: PropTypes.func.isRequired,
 };
 
-export { CURRENT_USER_QUERY };
 export default User;

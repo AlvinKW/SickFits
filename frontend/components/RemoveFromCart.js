@@ -1,18 +1,10 @@
 import React, { Component } from 'react';
-import gql from 'graphql-tag';
 import styled from 'styled-components';
 import { Mutation } from 'react-apollo';
 import PropTypes from 'prop-types';
 
-import { CURRENT_USER_QUERY } from './User';
-
-const REMOVE_FROM_CART_MUTATION = gql`
-	mutation REMOVE_FROM_CART_MUTATION($id: ID!) {
-		removeFromCart(id: $id) {
-			id
-		}
-	}
-`;
+import { REMOVE_FROM_CART_MUTATION } from '../lib/prismaMutations';
+import { CURRENT_USER_QUERY } from '../lib/prismaQueries';
 
 const StyledButton = styled.button`
 	border: none;

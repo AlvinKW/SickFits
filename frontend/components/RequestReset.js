@@ -1,17 +1,10 @@
 import React, { Component } from 'react';
-import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
+
+import { REQUEST_RESET_MUTATION } from '../lib/prismaMutations';
 
 import Form from './Form';
 import Error from './Error';
-
-const REQUEST_RESET_MUTATION = gql`
-	mutation REQUEST_RESET_MUTATION($email: String!) {
-		requestReset(email: $email) {
-			message
-		}
-	}
-`;
 
 class RequestReset extends Component {
 	state = { email: '' };

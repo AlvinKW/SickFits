@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { Mutation } from 'react-apollo';
 import styled from 'styled-components';
 
-import { TOGGLE_CART_MUTATION } from './Cart';
+import { TOGGLE_CART_MUTATION } from '../lib/prismaMutations';
 
 import User from './User';
 import CartCount from './CartCount';

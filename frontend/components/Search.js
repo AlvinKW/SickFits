@@ -1,20 +1,11 @@
 import React, { Component } from 'react';
-import gql from 'graphql-tag';
 import styled, { keyframes } from 'styled-components';
 import Router from 'next/router';
 import debounce from 'lodash.debounce';
 import Downshift, { resetIdCounter } from 'downshift';
 import { ApolloConsumer } from 'react-apollo';
 
-const SEARCH_ITEMS_QUERY = gql`
-	query SEARCH_ITEMS_QUERY($searchTerm: String!) {
-		items(where: { OR: [{ title_contains: $searchTerm }, { description_contains: $searchTerm }] }) {
-			id
-			title
-			image
-		}
-	}
-`;
+import { SEARCH_ITEMS_QUERY } from '../lib/prismaQueries';
 
 const StyledDropDown = styled.div`
 	position: absolute;

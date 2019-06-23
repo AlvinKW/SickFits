@@ -1,16 +1,8 @@
 import React, { Component } from 'react';
-import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
 
-import { ALL_ITEMS_QUERY } from './Items';
-
-const DELETE_ITEM_MUTATION = gql`
-	mutation DELETE_ITEM_MUTATION($id: ID!) {
-		deleteItem(id: $id) {
-			id
-		}
-	}
-`;
+import { DELETE_ITEM_MUTATION } from '../lib/prismaMutations';
+import { ALL_ITEMS_QUERY } from '../lib/prismaQueries';
 
 class DeleteItem extends Component {
 	updateCache = (cache, payload) => {

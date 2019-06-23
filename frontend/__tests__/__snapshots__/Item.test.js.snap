@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Item /> renders and matches the snapshot 1`] = `
-<ItemStyles__Item>
+<Item__StyledItem>
   <img
     alt="A Cool Item"
     src="dog.jpg"
   />
-  <Title>
+  <Item__StyledTitle>
     <Link
       href={
         Object {
@@ -21,10 +21,10 @@ exports[`<Item /> renders and matches the snapshot 1`] = `
         A Cool Item
       </a>
     </Link>
-  </Title>
-  <PriceTag>
+  </Item__StyledTitle>
+  <Item__StyledPriceTag>
     $50
-  </PriceTag>
+  </Item__StyledPriceTag>
   <p>
     This item is really cool!
   </p>
@@ -54,5 +54,5 @@ exports[`<Item /> renders and matches the snapshot 1`] = `
       Delete This Item
     </DeleteItem>
   </div>
-</ItemStyles__Item>
+</Item__StyledItem>
 `;

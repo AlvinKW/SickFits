@@ -1,9 +1,8 @@
 import withApollo from 'next-with-apollo';
 import ApolloClient from 'apollo-boost';
 
-import { LOCAL_STATE_QUERY } from '../components/Cart';
-
 import { endpoint } from '../config';
+import { LOCAL_STATE_QUERY } from './prismaQueries';
 
 function createClient({ headers }) {
 	return new ApolloClient({

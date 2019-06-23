@@ -1,32 +1,12 @@
 import React, { Component } from 'react';
-import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
 import Router from 'next/router';
 
-import { ALL_ITEMS_QUERY } from './Items';
+import { CREATE_ITEM_MUTATION } from '../lib/prismaMutations';
+import { ALL_ITEMS_QUERY } from '../lib/prismaQueries';
 
 import Form from './Form';
 import Error from './Error';
-
-const CREATE_ITEM_MUTATION = gql`
-	mutation CREATE_ITEM_MUTATION (
-		$title: String!
-		$description: String!
-		$image: String
-		$largeImage: String
-		$price: Int!
-	) {
-		createItem(
-			title: $title
-			description: $description
-			image: $image
-			largeImage: $largeImage
-			price: $price
-		) {
-			id
-		}
-	}
-`;
 
 class CreateItem extends Component {
 	state = {
@@ -138,5 +118,4 @@ class CreateItem extends Component {
 	}
 }
 
-export { CREATE_ITEM_MUTATION };
 export default CreateItem;

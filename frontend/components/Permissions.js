@@ -1,8 +1,10 @@
-import gql from 'graphql-tag';
 import styled from 'styled-components';
 import { Query, Mutation } from 'react-apollo';
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+
+import { ALL_USERS_QUERY } from '../lib/prismaQueries';
+import { UPDATE_PERMISSIONS_MUTATION } from '../lib/prismaMutations';
 
 import Error from './Error';
 import SickButton from './SickButton';
@@ -15,28 +17,6 @@ const possiblePermissions = [
 	'ITEMDELETE',
 	'PERMISSIONUPDATE',
 ];
-
-const ALL_USERS_QUERY = gql`
-	query ALL_USERS_QUERY {
-		users {
-			id
-			name
-			email
-			permissions
-		}
-	}
-`;
-
-const UPDATE_PERMISSIONS_MUTATION = gql`
-	mutation UPDATE_PERMISSIONS_MUTATION($permissions: [Permission], $userID: ID!) {
-		updatePermissions(permissions: $permissions, userID: $userID) {
-			id
-			name
-			email
-			permissions
-		}
-	}
-`;
 
 const StyledTable = styled.table`
 	width: 100%;

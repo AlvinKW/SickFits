@@ -1,17 +1,8 @@
 import React, { Component } from 'react';
-import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
 
-import { CURRENT_USER_QUERY } from './User';
-
-const ADD_TO_CART_MUTATION = gql`
-	mutation ADD_TO_CART_MUTATION($id: ID!) {
-		addToCart(id: $id) {
-			id
-			quantity
-		}
-	}
-`;
+import { ADD_TO_CART_MUTATION } from '../lib/prismaMutations';
+import { CURRENT_USER_QUERY } from '../lib/prismaQueries';
 
 class AddToCart extends Component {
 	render() {

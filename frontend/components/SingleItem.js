@@ -1,21 +1,11 @@
 import React, { Component } from 'react';
-import gql from 'graphql-tag';
 import styled from 'styled-components';
 import { Query } from 'react-apollo';
 import Head from 'next/head';
 
-import Error from './Error';
+import { SINGLE_ITEM_QUERY } from '../lib/prismaQueries';
 
-const SINGLE_ITEM_QUERY = gql`
-	query SINGLE_ITEM_QUERY($id: ID!) {
-		item(where: { id: $id }) {
-			id
-			title
-			description
-			largeImage
-		}
-	}
-`;
+import Error from './Error';
 
 const SingleItemStyles = styled.div`
 	display: grid;
@@ -70,5 +60,4 @@ class SingleItem extends Component {
 	}
 }
 
-export { SINGLE_ITEM_QUERY };
 export default SingleItem;

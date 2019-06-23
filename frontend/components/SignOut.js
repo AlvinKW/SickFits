@@ -1,16 +1,8 @@
 import React from 'react';
-import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
 
-import { CURRENT_USER_QUERY } from './User';
-
-const SIGN_OUT_MUTATION = gql`
-	mutation SIGN_OUT_MUTATION {
-		signOut {
-			message
-		}
-	}
-`;
+import { SIGN_OUT_MUTATION } from '../lib/prismaMutations';
+import { CURRENT_USER_QUERY } from '../lib/prismaQueries';
 
 function SignOut() {
 	return (

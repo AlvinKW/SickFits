@@ -1,31 +1,13 @@
 import React, { Component } from 'react';
-import gql from 'graphql-tag';
 import styled from 'styled-components';
 import { Query } from 'react-apollo';
 import Link from 'next/link';
 import { formatDistance } from 'date-fns';
 
+import { USER_ORDERS_QUERY } from '../lib/prismaQueries';
 import formatMoney from '../lib/formatMoney';
 
 import Error from './Error';
-
-const USER_ORDERS_QUERY = gql`
-	query USER_ORDERS_QUERY {
-		orders(orderBy: createdAt_DESC) {
-			id
-			total
-			createdAt
-			items {
-				id
-				title
-				description
-				image
-				price
-				quantity
-			}
-		}
-	}
-`;
 
 const OrderUl = styled.ul`
 	display: grid;

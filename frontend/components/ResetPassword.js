@@ -1,22 +1,12 @@
 import React, { Component } from 'react';
-import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
 import PropTypes from 'prop-types';
 
+import { RESET_PASSWORD_MUTATION } from '../lib/prismaMutations';
+import { CURRENT_USER_QUERY } from '../lib/prismaQueries';
+
 import Form from './Form';
 import Error from './Error';
-
-import { CURRENT_USER_QUERY } from './User';
-
-const RESET_PASSWORD_MUTATION = gql`
-	mutation RESET_PASSWORD_MUTATION($resetToken: String!, $password: String!, $confirmPassword: String!) {
-		resetPassword(resetToken: $resetToken, password: $password, confirmPassword: $confirmPassword) {
-			id
-			name
-			email
-		}
-	}
-`;
 
 class ResetPassword extends Component {
 	state = {

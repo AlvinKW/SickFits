@@ -4,7 +4,8 @@ import wait from 'waait';
 import { MockedProvider } from 'react-apollo/test-utils';
 
 import { mockItem } from '../lib/testUtils';
-import SingleItem, { SINGLE_ITEM_QUERY } from '../components/SingleItem';
+import { SINGLE_ITEM_QUERY } from '../lib/prismaQueries';
+import SingleItem from '../components/SingleItem';
 
 describe('<SingleItem />', () => {
 	it('renders with proper data', async () => {

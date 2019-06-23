@@ -1,41 +1,11 @@
 import React, { Component } from 'react';
-import gql from 'graphql-tag';
 import { Query, Mutation } from 'react-apollo';
+
+import { SINGLE_ITEM_QUERY } from '../lib/prismaQueries';
+import { UPDATE_ITEM_MUTATION } from '../lib/prismaMutations';
 
 import Form from './Form';
 import Error from './Error';
-
-const SINGLE_ITEM_QUERY = gql`
-	query SINGLE_ITEM_QUERY($id: ID!) {
-		item(where: { id: $id }) {
-			id
-			title
-			description
-			price
-		}
-	}
-`;
-
-const UPDATE_ITEM_MUTATION = gql`
-	mutation UPDATE_ITEM_MUTATION (
-		$id: ID!
-		$title: String
-		$description: String
-		$price: Int
-	) {
-		updateItem(
-			id: $id
-			title: $title
-			description: $description
-			price: $price
-		) {
-			id
-			title
-			description
-			price
-		}
-	}
-`;
 
 class UpdateItem extends Component {
 	state = {};
@@ -118,5 +88,4 @@ class UpdateItem extends Component {
 	}
 }
 
-export { UPDATE_ITEM_MUTATION };
 export default UpdateItem;

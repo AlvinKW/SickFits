@@ -1,21 +1,11 @@
 import React from 'react';
-import gql from 'graphql-tag';
 import styled from 'styled-components';
 import { Query } from 'react-apollo';
 import Head from 'next/head';
 import Link from 'next/link';
 
 import { perPage } from '../config';
-
-const PAGINATION_QUERY = gql`
-	query PAGINATION_QUERY {
-		itemsConnection {
-			aggregate {
-				count
-			}
-		}
-	}
-`;
+import { PAGINATION_QUERY } from '../lib/prismaQueries';
 
 const StyledPagination = styled.div`
 	display: inline-grid;

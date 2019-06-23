@@ -1,28 +1,15 @@
 import React, { Component } from 'react';
-import gql from 'graphql-tag';
 import StripeCheckout from 'react-stripe-checkout';
 import { Mutation } from 'react-apollo';
 import NProgress from 'nprogress';
 import Router from 'next/router';
 
-import User, { CURRENT_USER_QUERY } from './User';
-
 import { stripeKey } from '../config';
+import { CREATE_ORDER_MUTATION } from '../lib/prismaMutations';
+import { CURRENT_USER_QUERY } from '../lib/prismaQueries';
 import calcTotalPrice from '../lib/calcTotalPrice';
 
-const CREATE_ORDER_MUTATION = gql`
-	mutation CREATE_ORDER_MUTATION($token: String!) {
-		createOrder(token: $token) {
-			id
-			total
-			charge
-			items {
-				id
-				title
-			}
-		}
-	}
-`;
+import User from './User';
 
 function totalItems(cart) {
 	return cart.reduce((tally, cartItem) => tally + cartItem.quantity, 0);

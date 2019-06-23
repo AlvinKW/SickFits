@@ -1,36 +1,14 @@
 import React, { Component } from 'react';
-import gql from 'graphql-tag';
 import styled from 'styled-components';
 import { Query } from 'react-apollo';
 import Head from 'next/head';
 import { format } from 'date-fns';
 import PropTypes from 'prop-types';
 
+import { SINGLE_ORDER_QUERY } from '../lib/prismaQueries';
 import formatMoney from '../lib/formatMoney';
 
 import Error from './Error';
-
-const SINGLE_ORDER_QUERY = gql`
-	query SINGLE_ORDER_QUERY($id: ID!) {
-		order(id: $id) {
-			id
-			total
-			charge
-			createdAt
-			items {
-				id
-				title
-				description
-				image
-				price
-				quantity
-			}
-			user {
-				id
-			}
-		}
-	}
-`;
 
 const StyledOrder = styled.div`
 	max-width: 1000px;

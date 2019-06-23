@@ -1,9 +1,10 @@
 import React from 'react';
-import gql from 'graphql-tag';
 import styled from 'styled-components';
 import { adopt } from 'react-adopt';
 import { Query, Mutation } from 'react-apollo';
 
+import { LOCAL_STATE_QUERY } from '../lib/prismaQueries';
+import { TOGGLE_CART_MUTATION } from '../lib/prismaMutations';
 import formatMoney from '../lib/formatMoney';
 import calcTotalPrice from '../lib/calcTotalPrice';
 
@@ -11,18 +12,6 @@ import User from './User';
 import CartItem from './CartItem';
 import TakeMyMoney from './TakeMyMoney';
 import SickButton from './SickButton';
-
-const LOCAL_STATE_QUERY = gql`
-	query LOCAL_STATE_QUERY {
-		cartOpen @client
-	}
-`;
-
-const TOGGLE_CART_MUTATION = gql`
-	mutation TOGGLE_CART_MUTATION {
-		toggleCart @client
-	}
-`;
 
 const StyledCart = styled.div`
 	position: fixed;
@@ -132,5 +121,4 @@ function Cart() {
 	);
 }
 
-export { LOCAL_STATE_QUERY, TOGGLE_CART_MUTATION };
 export default Cart;

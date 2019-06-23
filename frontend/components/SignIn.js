@@ -1,21 +1,11 @@
 import React, { Component } from 'react';
-import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
+
+import { SIGN_IN_MUTATION } from '../lib/prismaMutations';
+import { CURRENT_USER_QUERY } from '../lib/prismaQueries';
 
 import Form from './Form';
 import Error from './Error';
-
-import { CURRENT_USER_QUERY } from './User';
-
-const SIGNIN_MUTATION = gql`
-	mutation SIGNIN_MUTATION($email: String!, $password: String!) {
-		signIn(email: $email, password: $password) {
-			id
-			name
-			email
-		}
-	}
-`;
 
 class SignIn extends Component {
 	state = {
@@ -30,7 +20,7 @@ class SignIn extends Component {
 	render() {
 		return (
 			<Mutation
-				mutation={SIGNIN_MUTATION}
+				mutation={SIGN_IN_MUTATION}
 				variables={this.state}
 				refetchQueries={[{ query: CURRENT_USER_QUERY }]}
 			>

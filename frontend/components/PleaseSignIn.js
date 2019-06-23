@@ -1,6 +1,7 @@
 import { Query } from 'react-apollo';
 
-import { CURRENT_USER_QUERY } from './User';
+import { CURRENT_USER_QUERY } from '../lib/prismaQueries';
+
 import SignIn from './SignIn';
 
 function PleaseSignIn(props) {
