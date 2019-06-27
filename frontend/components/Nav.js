@@ -84,7 +84,7 @@ function Nav() {
 	return (
 		<User>
 			{({ data: { me } }) => (
-				<StyledNav>
+				<StyledNav data-test="nav">
 					<Link href="/items">
 						<a>Shop</a>
 					</Link>
