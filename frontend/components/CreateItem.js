@@ -3,7 +3,6 @@ import { Mutation } from 'react-apollo';
 import Router from 'next/router';
 
 import { CREATE_ITEM_MUTATION } from '../lib/prismaMutations';
-import { ALL_ITEMS_QUERY } from '../lib/prismaQueries';
 
 import Form from './Form';
 import Error from './Error';
@@ -25,7 +24,6 @@ class CreateItem extends Component {
 	};
 
 	uploadFile = async e => {
-		console.info('Uploading File...');
 		const files = e.target.files;
 		const data = new FormData();
 		data.append('file', files[0]);
@@ -48,10 +46,9 @@ class CreateItem extends Component {
 			<Mutation
 				mutation={CREATE_ITEM_MUTATION}
 				variables={this.state}
-				refetchQueries={[{ query: ALL_ITEMS_QUERY }]}
 			>
 				{(createItem, { loading, error }) => (
-					<Form onSubmit={async e => {
+					<Form data-test="form" onSubmit={async e => {
 						e.preventDefault();
 
 						const response = await createItem();
