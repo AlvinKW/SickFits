@@ -8,7 +8,7 @@
 		"dev": "next -p 3000",
 		"lint": "eslint . --fix",
 		"build": "next build",
-		"start": "next start",
+		"start": "next start -p $PORT",
 		"test": "NODE_ENV=test jest --watch",
 		"test-win": "SET NODE_ENV=test&& jest --watch",
 		"heroku-postbuild": "next build"
