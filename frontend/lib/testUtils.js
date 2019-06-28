@@ -45,7 +45,7 @@ const mockOrder = () => ({
 
 const mockCartItem = overrides => ({
 	__typename: 'CartItem',
-	id: 'omg123',
+	id: 'ABC123',
 	quantity: 3,
 	item: mockItem(),
 	user: mockUser(),
