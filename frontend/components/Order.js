@@ -67,7 +67,7 @@ class Order extends Component {
 
 					const order = data.order;
 					return (
-						<StyledOrder>
+						<StyledOrder data-test="order">
 							<Head>
 								<title>Sick Fits! - Order {order.id}</title>
 							</Head>
