@@ -6,6 +6,7 @@ import { MockedProvider } from 'react-apollo/test-utils';
 
 import { mockItem } from '../lib/testUtils';
 import { CREATE_ITEM_MUTATION } from '../lib/prismaMutations';
+import { ALL_ITEMS_QUERY } from '../lib/prismaQueries';
 import CreateItem from '../components/CreateItem';
 
 const dogImage = 'https://dog.com/dog.jpg';
@@ -69,27 +70,57 @@ describe('<CreateItem />', () => {
 
 	it('creates an item when the form is submitted', async () => {
 		const item = mockItem();
-		const mocks = [{
-			request: {
-				query: CREATE_ITEM_MUTATION,
-				variables: {
-					title: item.title,
-					description: item.description,
-					image: '',
-					largeImage: '',
-					price: item.price,
+		const mocks = [
+			{
+				request: {
+					query: CREATE_ITEM_MUTATION,
+					variables: {
+						title: item.title,
+						description: item.description,
+						image: '',
+						largeImage: '',
+						price: item.price,
+					},
 				},
-			},
-			result: {
-				data: {
-					createItem: {
-						...mockItem(),
-						__typename: 'Item',
-						id: 'ABC123',
+				result: {
+					data: {
+						createItem: {
+							...mockItem(),
+							__typename: 'Item',
+							id: 'ABC123',
+						},
 					},
 				},
 			},
-		}];
+			{
+				request: {
+					query: ALL_ITEMS_QUERY,
+				},
+				result: {
+					data: {
+						items: [],
+					},
+				},
+			},
+			{
+				request: {
+					query: ALL_ITEMS_QUERY,
+				},
+				result: {
+					data: {
+						items: [{
+							__typename: item.__typename,
+							id: item.id,
+							title: item.title,
+							description: item.description,
+							image: item.image,
+							largeImage: item.largeImage,
+							price: item.price,
+						}],
+					},
+				},
+			},
+		];
 
 		const wrapper = mount(
 			<MockedProvider mocks={mocks}>

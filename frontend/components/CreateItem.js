@@ -3,6 +3,7 @@ import { Mutation } from 'react-apollo';
 import Router from 'next/router';
 
 import { CREATE_ITEM_MUTATION } from '../lib/prismaMutations';
+import { ALL_ITEMS_QUERY } from '../lib/prismaQueries';
 
 import Form from './Form';
 import Error from './Error';
@@ -46,6 +47,7 @@ class CreateItem extends Component {
 			<Mutation
 				mutation={CREATE_ITEM_MUTATION}
 				variables={this.state}
+				refetchQueries={[{ query: ALL_ITEMS_QUERY }]}
 			>
 				{(createItem, { loading, error }) => (
 					<Form data-test="form" onSubmit={async e => {
