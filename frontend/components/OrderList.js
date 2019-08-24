@@ -13,6 +13,10 @@ const OrderUl = styled.ul`
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(40$, 1fr));
 	grid-gap: 4rem;
+
+	@media only screen and (max-width: 600px) {
+		padding: 0;
+	}
 `;
 
 const StyledOrderItem = styled.li`
@@ -56,6 +60,14 @@ const StyledOrderItem = styled.li`
 		strong {
 			display: block;
 			margin-bottom: 1rem;
+		}
+	}
+
+	@media only screen and (max-width: 600px) {
+		font-size: 1rem;
+
+		.images img {
+			height: 100px;
 		}
 	}
 `;
