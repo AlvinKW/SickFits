@@ -58,6 +58,10 @@ const StyledCart = styled.div`
 		list-style: none;
 		overflow: scroll;
 	}
+
+	@media only screen and (max-width: 600px) {
+		min-width: 325px;
+	}
 `;
 
 const CloseButton = styled.button`

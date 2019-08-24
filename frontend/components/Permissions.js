@@ -53,6 +53,53 @@ const StyledTable = styled.table`
 			background: ${props => props.theme.offWhite};
 		}
 	}
+
+	@media only screen and (max-width: 600px) {
+		display: block;
+
+		thead, tbody, th, td, tr {
+			display: block;
+		}
+
+		thead tr {
+			position: absolute;
+			top: -9999px;
+			left: -9999px;
+		}
+
+		tr {
+			border: 1px solid ${props => props.theme.grey};
+		}
+
+		td {
+			position: relative;
+			border: none;
+			border-bottom: 1px solid #eee;
+			font-size: 1rem;
+		}
+
+		td:not(:last-child) {
+			padding-left: 50%;
+		}
+
+		td::before {
+			position: absolute;
+			top: 6px;
+			left: 6px;
+			width: 45%;
+			padding-right: 10px;
+			white-space: nowrap;
+		}
+
+		td:nth-of-type(1)::before { content: "Name"; }
+		td:nth-of-type(2)::before { content: "E-Mail"; }
+		td:nth-of-type(3)::before { content: "ADMIN" }
+		td:nth-of-type(4)::before { content: "USER" }
+		td:nth-of-type(5)::before { content: "ITEMCREATE" }
+		td:nth-of-type(6)::before { content: "ITEMUPDATE" }
+		td:nth-of-type(7)::before { content: "ITEMDELETE" }
+		td:nth-of-type(8)::before { content: "PERMISSIONUPDATE" }
+	}
 `;
 
 function Permissions() {
