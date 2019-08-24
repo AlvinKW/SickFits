@@ -23,6 +23,10 @@ const Mutation = {
 		}, info);
 	},
 	async updateItem(parent, args, context, info) {
+		if (!context.request.userID) {
+			throw new Error('You must be logged in to do that!');
+		}
+
 		const updatedItem = { ...args };
 		delete updatedItem.id;
 

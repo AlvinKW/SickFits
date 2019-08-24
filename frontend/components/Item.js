@@ -88,7 +88,7 @@ const StyledPriceTag = styled.span`
 
 class Item extends Component {
 	render() {
-		const { item } = this.props;
+		const { item, permissions } = this.props;
 		return (
 			<StyledItem>
 				{item.image && <img src={item.image} alt={item.title} />}
@@ -101,11 +101,17 @@ class Item extends Component {
 				<p>{item.description}</p>
 
 				<div className="buttonList">
-					<Link href={{ pathname: '/update', query: { id: item.id } }}>
-						<a>Edit This Item</a>
-					</Link>
-					<AddToCart id={item.id} />
-					<DeleteItem id={item.id}>Delete This Item</DeleteItem>
+					{permissions.includes('ADMIN') && (
+						<Link href={{ pathname: '/update', query: { id: item.id } }}>
+							<a>Edit This Item</a>
+						</Link>
+					)}
+					{permissions.includes('USER') && (
+						<AddToCart id={item.id} />
+					)}
+					{permissions.includes('ADMIN') && (
+						<DeleteItem id={item.id}>Delete This Item</DeleteItem>
+					)}
 				</div>
 			</StyledItem>
 		);

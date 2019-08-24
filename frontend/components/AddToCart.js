@@ -12,11 +12,17 @@ class AddToCart extends Component {
 				variables={{ id: this.props.id }}
 				refetchQueries={[{ query: CURRENT_USER_QUERY }]}
 			>
-				{(addToCart, { loading }) => (
-					<button disabled={loading} onClick={addToCart}>
-						Add{loading && 'ing'} To Cart
-					</button>
-				)}
+				{(addToCart, { loading, error }) => {
+					if (error) {
+						alert(error.message.replace('GraphQL error: ', ''));
+					}
+
+					return (
+						<button disabled={loading} onClick={addToCart}>
+							Add{loading && 'ing'} To Cart
+						</button>
+					);
+				}}
 			</Mutation>
 		);
 	}
