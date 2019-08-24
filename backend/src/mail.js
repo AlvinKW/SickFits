@@ -13,14 +13,14 @@ const makeANiceEmail = text => `
 	<div className="email" style="
 		padding: 20px;
 		border: 1px solid black;
-		font-family: sans-serif;
+		font-family: serif;
 		font-size: 20px;
 		line-height: 2;
 	">
-		<h2>Hello There!</h2>
+		<h2>Hello,</h2>
 		<p>${text}</p>
-
-		<p>- Kazi Jawad</p>
+		<p>Thank you,</p>
+		<p>SickFits Team</p>
 	</div>
 `;
 

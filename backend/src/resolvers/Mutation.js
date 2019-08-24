@@ -118,9 +118,17 @@ const Mutation = {
 			to: user.email,
 			subject: 'SickFits Password Reset',
 			html: makeANiceEmail(`
-				Your Password Reset Token:
-				\n\n
-				<a href="${process.env.FRONTEND_URL}/reset?resetToken=${resetToken}">Click Here To Reset</a>
+				<p>
+					You recently requested to reset your password for your SickFits account.
+					Click the link below to reset it.
+				</p>
+				<a href="${process.env.FRONTEND_URL}/reset?resetToken=${resetToken}">
+					Reset Password
+				</a>
+				<p>
+					If you did not request a password reset, please ignore this email.
+					This password reset is only valid for the next hour.
+				</p>
 			`),
 		});
 
