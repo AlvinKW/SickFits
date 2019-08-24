@@ -49,6 +49,15 @@ const StyledOrder = styled.div`
 			object-fit: cover;
 		}
 	}
+
+	@media only screen and (max-width: 600px) {
+		font-size: 1rem;
+
+		.order-item {
+			grid-auto-flow: column;
+			grid-template-rows: 300px 1fr;
+		}
+	}
 `;
 
 class Order extends Component {
