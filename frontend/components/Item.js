@@ -52,6 +52,11 @@ const StyledItem = styled.div`
 			}
 		}
 	}
+
+	@media only screen and (max-width: 600px) {
+		width: 100%;
+		max-width: 325px;
+	}
 `;
 
 const StyledTitle = styled.h3`
@@ -69,6 +74,12 @@ const StyledTitle = styled.h3`
 		line-height: 1.3;
 		background: ${props => props.theme.red};
 		color: white;
+	}
+
+	@media only screen and (max-width: 600px) {
+		a {
+			font-size: 2.5rem;
+		}
 	}
 `;
 

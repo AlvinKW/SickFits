@@ -32,6 +32,12 @@ const StyledPagination = styled.div`
 		color: grey;
 		pointer-events: none;
 	}
+
+	@media only screen and (max-width: 600px) {
+		& > * {
+			padding: 5px 10px;
+		}
+	}
 `;
 
 function Pagination(props) {

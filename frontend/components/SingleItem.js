@@ -23,8 +23,35 @@ const SingleItemStyles = styled.div`
 	}
 
 	.details {
+		display: flex;
+		flex-flow: column;
+		justify-content: center;
 		margin: 3rem;
 		font-size: 2rem;
+		text-align: center;
+	}
+
+	.details h2 {
+		color: ${props => props.theme.red};
+	}
+
+	@media only screen and (max-width: 600px) {
+		grid-auto-flow: row;
+		width: 100%;
+		max-width: 325px;
+
+		img {
+			max-width: 325px;
+		}
+
+		.details {
+			max-height: 500px;
+			max-width: 325px;
+		}
+
+		.details h2 {
+			font-size: 2.5rem;
+		}
 	}
 `;
 
