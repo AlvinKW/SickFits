@@ -73,12 +73,24 @@ cd SickFits/frontend
 npm install
 ```
 
-9. Run the npm script: npm start
+9. Create a config.js file
+```
+touch config.js
+```
+
+10. Export the necessary constants with your preferred value
+```
+export const endpoint = 'http://localhost:5000';
+export const perPage = 4;
+export const stripeKey = XXX;
+```
+
+11. Run the npm script: npm start
 ```
 npm start
 ```
 
-10. The server will start on this domain
+12. The server will start on this domain
 ```
 https://localhost:3000
 ```
