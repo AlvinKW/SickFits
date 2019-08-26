@@ -4,7 +4,6 @@ import { Mutation } from 'react-apollo';
 import NProgress from 'nprogress';
 import Router from 'next/router';
 
-import { stripeKey } from '../config';
 import { CREATE_ORDER_MUTATION } from '../lib/prismaMutations';
 import { CURRENT_USER_QUERY } from '../lib/prismaQueries';
 import calcTotalPrice from '../lib/calcTotalPrice';
@@ -49,7 +48,7 @@ class TakeMyMoney extends Component {
 									image={me.cart.length && me.cart[0].item && me.cart[0].item.image}
 									amount={calcTotalPrice(me.cart)}
 									currency="USD"
-									stripeKey={stripeKey}
+									stripeKey={process.env.STRIPE_KEY}
 									email={me.email}
 									token={response => this.onTokenHandler(response, createOrder)}
 								>

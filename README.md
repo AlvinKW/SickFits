@@ -73,16 +73,15 @@ cd SickFits/frontend
 npm install
 ```
 
-9. Create a config.js file
+10. Export the necessary environment variables in the next.config.js file with your preferred value
 ```
-touch config.js
-```
-
-10. Export the necessary constants with your preferred value
-```
-export const endpoint = 'http://localhost:5000';
-export const perPage = 4;
-export const stripeKey = XXX;
+module.exports = {
+	env: {
+		ENDPOINT: 'http://localhost:5000',
+		PERPAGE: 4,
+		STRIPE_KEY: XXX,
+	},
+};
 ```
 
 11. Run the npm script: npm start

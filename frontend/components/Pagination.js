@@ -4,7 +4,6 @@ import { Query } from 'react-apollo';
 import Head from 'next/head';
 import Link from 'next/link';
 
-import { perPage } from '../config';
 import { PAGINATION_QUERY } from '../lib/prismaQueries';
 
 const StyledPagination = styled.div`
@@ -50,7 +49,7 @@ function Pagination(props) {
 
 				const count = data.itemsConnection.aggregate.count;
 				const page = props.page;
-				const pages = Math.ceil(count / perPage);
+				const pages = Math.ceil(count / process.env.PERPAGE);
 				return (
 					<StyledPagination data-test="pagination">
 						<Head>

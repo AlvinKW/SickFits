@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Query } from 'react-apollo';
 
-import { perPage } from '../config';
 import { ALL_ITEMS_QUERY } from '../lib/prismaQueries';
 
 import User from './User';
@@ -38,7 +37,7 @@ class Items extends Component {
 						<Center>
 							<Pagination page={this.props.page} />
 							<Query query={ALL_ITEMS_QUERY} variables={{
-								skip: this.props.page * perPage - perPage,
+								skip: this.props.page * process.env.PERPAGE - process.env.PERPAGE,
 							}}>
 								{({ data, loading, error }) => {
 									if (loading) {

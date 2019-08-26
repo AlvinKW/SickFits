@@ -1,9 +1,7 @@
 import gql from 'graphql-tag';
 
-import { perPage } from '../config';
-
 export const ALL_ITEMS_QUERY = gql`
-	query ALL_ITEMS_QUERY($skip: Int = 0, $first: Int = ${perPage}) {
+	query ALL_ITEMS_QUERY($skip: Int = 0, $first: Int = ${process.env.PERPAGE}) {
 		items(orderBy: createdAt_DESC, skip: $skip, first: $first) {
 			id
 			title

@@ -1,12 +1,11 @@
 import withApollo from 'next-with-apollo';
 import ApolloClient from 'apollo-boost';
 
-import { endpoint } from '../config';
 import { LOCAL_STATE_QUERY } from './prismaQueries';
 
 function createClient({ headers }) {
 	return new ApolloClient({
-		uri: endpoint,
+		uri: process.env.ENDPOINT,
 		request: operation => {
 			operation.setContext({
 				fetchOptions: {
