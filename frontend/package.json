@@ -10,7 +10,7 @@
 		"dev": "next -p 3000",
 		"lint": "eslint . --fix",
 		"build": "next build",
-		"deploy": "cd .. && git subtree push --prefix frontend origin frontend"
+		"deploy": "now --name SickFits"
 	},
 	"dependencies": {
 		"apollo-boost": "^0.1.16",
