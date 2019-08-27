@@ -52,22 +52,53 @@ PRISMA_SECRET=xxx
 STRIPE_SECRET=xxx
 ```
 
-5. Run the npm script: npm run deploy
+5. Create a now.json file with the necessary environment variables with your preferred value
+```
+{
+	"version": 2,
+	"name": "SickFits Backend",
+	"builds": [
+		{
+			"src": "src/index.js",
+			"use": "@now/node-server"
+		}
+	],
+	"routes": [
+		{
+			"src": "/.*",
+			"dest": "src/index.js"
+		}
+	],
+	"env": {
+		"APP_SECRET": "XXX",
+		"FRONTEND_URL": "XXX",
+		"MAIL_HOST": "XXX",
+		"MAIL_PASS": "XXX",
+		"MAIL_PORT": "XXX",
+		"MAIL_USER": "XXX",
+		"PRISMA_ENDPOINT": "XXX",
+		"PRISMA_SECRET": "XXX",
+		"STRIPE_SECRET": "XXX"
+	}
+}
+```
+
+6. Run the npm script: npm run deploy
 ```
 npm run deploy
 ```
 
-6. Run the npm script: npm start
+7. Run the npm script: npm start
 ```
 npm start
 ```
 
-7. The server will start on this domain
+8. The server will start on this domain
 ```
 https://localhost:5000
 ```
 
-8. On a new terminal, enter the frontend directory and install the necessary packages
+9. On a new terminal, enter the frontend directory and install the necessary packages
 ```
 cd SickFits/frontend
 npm install
