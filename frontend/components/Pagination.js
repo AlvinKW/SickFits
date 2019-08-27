@@ -55,7 +55,7 @@ function Pagination(props) {
 						<Head>
 							<title>Sick Fits! - Page {page} of {pages}</title>
 						</Head>
-						<Link prefetch href={{
+						<Link href={{
 							pathname: 'items',
 							query: { page: page - 1 },
 						}}>
@@ -63,7 +63,7 @@ function Pagination(props) {
 						</Link>
 						<p>Page {page} of <span className="totalPages">{pages}</span></p>
 						<p>{count} Items Total</p>
-						<Link prefetch href={{
+						<Link href={{
 							pathname: 'items',
 							query: { page: page + 1 },
 						}}>

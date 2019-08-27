@@ -1,9 +1,15 @@
 {
-	"build": {
-		"env": {
-			"ENDPOINT": "https://yoga-sickfits.herokuapp.com",
-			"PERPAGE": "4",
-			"STRIPE_KEY": "pk_test_m7FuPcR7nXOWy7CI8nDQUhsw00df1XeHRB"
+	"version": 2,
+	"name": "SickFits Frontend",
+	"builds": [
+		{
+			"src": "package.json",
+			"use": "@now/next"
 		}
+	],
+	"env": {
+		"ENDPOINT": "https://yoga-sickfits.herokuapp.com",
+		"PERPAGE": "4",
+		"STRIPE_KEY": "pk_test_m7FuPcR7nXOWy7CI8nDQUhsw00df1XeHRB"
 	}
 }

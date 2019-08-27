@@ -48,7 +48,7 @@ class Items extends Component {
 										return (
 											<ItemsList>
 												{data.items.map(item => {
-													return <Item key={item.id} item={item} permissions={me.permissions} />;
+													return <Item key={item.id} item={item} permissions={me && me.permissions} />;
 												})}
 											</ItemsList>
 										);
