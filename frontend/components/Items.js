@@ -16,6 +16,7 @@ const ItemsList = styled.div`
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	grid-gap: 60px;
+	justify-items: center;
 	max-width: ${props => props.theme.maxWidth};
 	margin: 0 auto;
 
