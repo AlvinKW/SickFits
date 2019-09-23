@@ -1,6 +1,7 @@
 {
 	"version": 2,
 	"name": "SickFits Frontend",
+	"alias": ["www.sickfits.dev"],
 	"builds": [
 		{
 			"src": "package.json",
@@ -9,8 +10,9 @@
 	],
 	"routes": [
 		{
-			"src": "/",
-			"dest": "/"
+			"src": "/(.*)",
+			"status": 301,
+			"headers": { "Location": "https://sickfits.dev/$1" }
 		}
 	],
 	"env": {
