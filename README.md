@@ -1,6 +1,8 @@
-# SickFits
+# [SickFits](https://sickfits.dev)
 
 A full stack online clothing store complete with real credit checkout.
+
+![Screenshot](https://github.com/kazijawad/SickFits/blob/master/screenshot.png)
 
 ## Getting Started
 
@@ -150,3 +152,4 @@ Kazi Jawad
 ## Acknowledgments
 
 * [Fullstack Advanced React & GraphQL](https://advancedreact.com/)
+* [Supreme New York](http://supremenewyork.com/)
